@@ -103,22 +103,26 @@ function draw() {
   textSize(12);
   text("Sensor Data: " + latestData, windowWidth/2, windowHeight-600);
   
+  let rect1x = windowWidth/3.5;
+  let rect2x = windowWidth/2;
+  let recty = height/2.5;
+  let rectwidth = 300;
+  let rectheight = 180;
   
-  // fill(255,255,255,191);
-  // rect(width / 8,height / 2.6,180,130);
-  // fill(0);
+  fill(255,255,255,191);
+  rect(rect1x, recty,rectwidth,rectheight);
+  fill(0);
   textSize(40);
   // Draw player 1's time
-  text(formatTime(player1Time), width / 4, height / 2);
+  text(formatTime(player1Time), rect1x + rectwidth / 2, recty + rectheight / 2);
   
   
-  // fill(0,0,0,191);
-  // rect(width / 1.6,height / 2.6,180,130);
-  // fill(255);
+  fill(0,0,0,191);
+  rect(rect2x,recty,rectwidth,rectheight);
+  fill(255);
   textSize(40);
-  
   // Draw player 2's time
-  text(formatTime(player2Time), 3 * width / 4, height / 2);
+  text(formatTime(player2Time), rect2x + rectwidth / 2, recty + rectheight / 2);
   
   // Switch active player if time is up
   if (activePlayer == 1 && player1Time <= 0) {
