@@ -1,5 +1,5 @@
-let player1Time = 300; // Player 1's starting time in seconds (5 minutes)
-let player2Time = 300; // Player 2's starting time in seconds (5 minutes)
+let player1Time = 600; // Player 1's starting time in seconds (5 minutes)
+let player2Time = 600; // Player 2's starting time in seconds (5 minutes)
 let activePlayer = 1; // Player 1 starts first
 let isRunning = false; // Clock is initially stopped
 let intervalId; // ID of the setInterval() function
@@ -8,24 +8,47 @@ let serial;
 let latestData = "waiting for data";  // you'll use this to write incoming data to the canvas
 
 function setup() {
-createCanvas(windowWidth, windowHeight - 200);
+createCanvas(windowWidth, windowHeight-10);
   textAlign(CENTER, CENTER);
   textSize(32);
   
   // Create start button
-  startButton = createButton('Start');
-  startButton.position(50, height + 10);
-  startButton.mousePressed(startClock);
-  
-  // Create stop button
-  stopButton = createButton('Stop');
-  stopButton.position(150, height + 10);
-  stopButton.mousePressed(stopClock);
-  
-  // Create reset button
-  resetButton = createButton('Reset');
-  resetButton.position(250, height + 10);
-  resetButton.mousePressed(resetClock);
+  // Create start button
+startButton = createButton('Start');
+startButton.position(windowWidth/3.5, height - 100);
+startButton.mousePressed(startClock);
+startButton.style('background-color', '#4CAF50'); // set background color
+startButton.style('border', 'none'); // remove border
+startButton.style('color', 'white'); // set text color
+startButton.style('padding', '15px 32px'); // set padding
+startButton.style('text-align', 'center'); // center text
+startButton.style('text-decoration', 'none'); // remove underline
+startButton.style('display', 'inline-block'); // make button inline
+
+// Create stop button
+stopButton = createButton('Stop');
+stopButton.position(windowWidth/2.2, height - 100);
+stopButton.mousePressed(stopClock);
+stopButton.style('background-color', '#f44336');
+stopButton.style('border', 'none');
+stopButton.style('color', 'white');
+stopButton.style('padding', '15px 32px');
+stopButton.style('text-align', 'center');
+stopButton.style('text-decoration', 'none');
+stopButton.style('display', 'inline-block');
+
+// Create reset button
+resetButton = createButton('Reset');
+resetButton.position(windowWidth/1.59, height - 100);
+resetButton.mousePressed(resetClock);
+resetButton.style('background-color', '#008CBA');
+resetButton.style('border', 'none');
+resetButton.style('color', 'white');
+resetButton.style('padding', '15px 32px');
+resetButton.style('text-align', 'center');
+resetButton.style('text-decoration', 'none');
+resetButton.style('display', 'inline-block');
+
   
   
   //// the data part form arduino
@@ -74,12 +97,25 @@ createCanvas(windowWidth, windowHeight - 200);
 }
 
 function draw() {
-  background(255);
+  background(255, 255, 255);
   fill(0);
   
-  text(" sensor data:" +latestData, 100, 10);
+  textSize(12);
+  text("Sensor Data: " + latestData, windowWidth/2, windowHeight-600);
+  
+  
+  // fill(255,255,255,191);
+  // rect(width / 8,height / 2.6,180,130);
+  // fill(0);
+  textSize(40);
   // Draw player 1's time
   text(formatTime(player1Time), width / 4, height / 2);
+  
+  
+  // fill(0,0,0,191);
+  // rect(width / 1.6,height / 2.6,180,130);
+  // fill(255);
+  textSize(40);
   
   // Draw player 2's time
   text(formatTime(player2Time), 3 * width / 4, height / 2);
@@ -95,10 +131,6 @@ function draw() {
   if (isRunning) {
     clearInterval(intervalId);
     intervalId = setInterval(decrementTime, 1000 + millis() % 1000);
-  }
-
-  if(latestData => 1000){
-    activePlayer = activePlayer == 1 ? 2 : 1;
   }
 }
 
@@ -120,8 +152,8 @@ function stopClock() {
 }
 
 function resetClock() {
-  player1Time = 300;
-  player2Time = 300;
+  player1Time = 600;
+  player2Time = 600;
   activePlayer = 1;
   isRunning = false;
   clearInterval(intervalId);
