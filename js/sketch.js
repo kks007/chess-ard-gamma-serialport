@@ -28,7 +28,7 @@ startButton.style('display', 'inline-block'); // make button inline
 // Create stop button
 stopButton = createButton('Stop');
 stopButton.position(windowWidth/2.2, height - 100);
-stopButton.mousePressed(stopClock);
+stopButton.mousePressed(isRunning = false);
 stopButton.style('background-color', '#f44336');
 stopButton.style('border', 'none');
 stopButton.style('color', 'white');
